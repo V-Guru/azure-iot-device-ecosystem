@@ -40,7 +40,10 @@ You should have the following items ready before beginning the process:
 <a name="PrepareDevice"></a>
 # Step 2: Prepare your Device
 
--   Prepare EG5400 gateway for reading sensor data. Install and run required packages for running sensor codes.
+-   The Modular IoT Gateway 5400-1 is a ready-to-deploy, industrial-grade, gateway for advanced Internet of Things applications. It is a smart device that enables communications, edge computational power, simplified application deployment, and integration with Internet of Things (IoT) and Machine to Machine (M2M) platforms for immediate service generation. It provides a capable communication architecture and offers connectivity to a wide range of sensors and edge devices making it easy to collect data from the field and deliver it to your business application. Modular IoT Gateway 5400-1 supports wireless applications including GPS, Wi-Fi, and 2G/3G/4G cellular and wired connectivity such as USB 2.0, Gigabit Ethernet, serial ports, CAN 2.0b, analog inputs, and isolated digital I/O.
+- Read the manual to power on device and make sure it is connected to internet via Wi-Fi or ether net.
+- Read the Manual to connect EG5400 gateway through putty.
+- [Link to EG5400]
 
 <a name="Build"></a>
 # Step 3: Build and Run the Sample
@@ -83,10 +86,6 @@ You should have the following items ready before beginning the process:
 <a name="BuildSamples"></a>
 ## 3.2 Build the samples
 
--   Prepare source code.
-    
-        Prepare source code and copy the code to required directory to run.
-	
 -   To validate the source code run the following commands on the device.
 
         export IOTHUB_CONNECTION_STRING='<iothub_connection_string>'
@@ -95,22 +94,39 @@ You should have the following items ready before beginning the process:
 
 -   Run the following commands 
 
-        cd ~/<path to code directory>
-        
+        cd ~/azure-iot-sdk-node
+        build/dev-setup.sh
+        build/build.sh | tee LogFile.txt
 
--   Install npm package to run code.
+    ***Note:*** *LogFile.txt in above command should be replaced with a file name where build output will be written.*
 
-        cd ~/<path to code directory>/
+-   Install npm package to run sample.
 
-        npm install 	
+        cd ~/azure-iot-sdk-node/device/samples
+	
+    **For HTTP Protocol:**
+	
+        npm install azure-iot-device-http
+	
+    **For MQTT Protocol:**
+
+        npm install azure-iot-device-mqtt	
 
 -   To update sample, run the following command on device.
 
-        cd ~/<path to code directory>/
-        nano <Azure Iot Hub file>.js
+        cd ~/azure-iot-sdk-node/device/samples
+        nano simple_sample_device.js
 
 -   This launches a console-based text editor. Scroll down to the
     protocol information.
+    
+-   Find the below code:
+
+        var Protocol = require('azure-iot-device-amqp').Amqp;
+	
+    The default protocol used is AMQP. Code for other protocols(HTTP/MQTT) are mentioned just below the above line in the script.
+    Uncomment the line as per the protocol you want to use.
+
 
 -   Scroll down to the connection information.
     Find the following place holder for IoT connection string:
@@ -123,6 +139,9 @@ You should have the following items ready before beginning the process:
 
 -   Press Ctrl+X to exit nano.
 
+-   Run the following command before leaving the **~/azure-iot-sdk-node/device/samples** directory
+
+        npm link azure-iot-device
 
 <a name="Run"></a>
 ## 3.3 Run and Validate the Samples
@@ -131,15 +150,13 @@ You should have the following items ready before beginning the process:
 
 -   Run the sample by issuing following command and verify that data has been successfully sent and received.
 
-        cd ~/<path to directory>
-	pm2 start <Azure Iot Hub file>.js	
+        node ~/azure-iot-sdk-node/device/samples/simple_sample_device.js
 
 -   See [Manage IoT Hub][lnk-manage-iot-hub] to learn how to observe the messages IoT Hub receives from the application.
 
 ### 3.3.2 Receive messages from IoT Hub
 
 -   See [Manage IoT Hub][lnk-manage-iot-hub] to learn how to send cloud-to-device messages to the application.
-
 
 <a name="NextSteps"></a>
 # Next Steps
@@ -162,4 +179,5 @@ You have now learned how to run a sample application that collects sensor data a
 [setup-devbox-linux]: https://github.com/Azure/azure-iot-device-ecosystem/blob/master/get_started/node-devbox-setup.md
 [lnk-setup-iot-hub]: ../../setup_iothub.md
 [lnk-manage-iot-hub]: ../../manage_iot_hub.md
+[Link to EG5400]:https://cdn2.hubspot.net/hubfs/5724847/FY_19_Revamp_Assets_Website/Resource%20Center/Flyers/Communications/iot-edge-gateways-flyer-0619.pdf?hsCtaTracking=cc4d313f-62a0-4900-9783-747d84779e09%7C601b830d-6ba9-4dda-844a-8163aabc2ea1
 
