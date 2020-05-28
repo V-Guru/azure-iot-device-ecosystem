@@ -107,7 +107,7 @@ You should have the following items ready before beginning the process:
 -   To update sample, run the following command on device.
 
         cd ~/<path to code directory>/
-        nano AzureManager.js
+        nano <Azure Iot Hub file>.js
 
 -   This launches a console-based text editor. Scroll down to the
     protocol information.
@@ -132,7 +132,7 @@ You should have the following items ready before beginning the process:
 -   Run the sample by issuing following command and verify that data has been successfully sent and received.
 
         cd ~/<path to directory>
-	pm2 start AzureManager.js	
+	pm2 start <Azure Iot Hub file>.js	
 
 -   See [Manage IoT Hub][lnk-manage-iot-hub] to learn how to observe the messages IoT Hub receives from the application.
 
