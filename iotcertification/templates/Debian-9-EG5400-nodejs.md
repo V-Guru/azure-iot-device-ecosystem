@@ -129,7 +129,7 @@ You should have the following items ready before beginning the process:
 
 	
     The default protocol used is AMQP. Code for other protocols(HTTP/MQTT) are mentioned just below the above line in the script.
-    Uncomment the line as per the protocol you want to use. For EG5400 use MQTT or HTTP.
+    Uncomment the line as per the protocol you want to use. For **EG5400 use MQTT or HTTP**.
 
 -   Scroll down to the connection information.
     Find the following place holder for IoT connection string:
