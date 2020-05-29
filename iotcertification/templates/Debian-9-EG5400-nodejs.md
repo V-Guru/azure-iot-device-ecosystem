@@ -1,6 +1,6 @@
 ---
 platform: Debian 9.12 GNU/Linux 9.12
-device: EG5400
+device: Cyient EG5400
 language: javascript
 ---
 
@@ -21,7 +21,7 @@ Run a simple JavaScript sample on EG5400 device running Debian 9.12 GNU/Linux 9.
 
 **About this document**
 
-This document describes how to connect EG5400 device running Debian 9.12 GNU/Linux 9.12 with Azure IoT SDK. This multi-step process includes:
+This document describes how to connect Cyient EG5400 gateway device running Debian 9.12 GNU/Linux 9.12 with Azure IoT SDK. This multi-step process includes:
 -   Configuring Azure IoT Hub
 -   Registering your IoT device
 -   Build and deploy Azure IoT SDK on device
@@ -35,15 +35,15 @@ You should have the following items ready before beginning the process:
 -   [Setup your IoT hub][lnk-setup-iot-hub]
 -   [Provision your device and get its credentials][lnk-manage-iot-hub]
 -   Computer with Git client installed 
--   EG5400 device.
+-   Cyient EG5400 gateway device.
 
 <a name="PrepareDevice"></a>
 # Step 2: Prepare your Device
 
--   The Modular IoT Gateway 5400-1 is a ready-to-deploy, industrial-grade, gateway for advanced Internet of Things applications. It is a smart device that enables communications, edge computational power, simplified application deployment, and integration with Internet of Things (IoT) and Machine to Machine (M2M) platforms for immediate service generation. It provides a capable communication architecture and offers connectivity to a wide range of sensors and edge devices making it easy to collect data from the field and deliver it to your business application. Modular IoT Gateway 5400-1 supports wireless applications including GPS, Wi-Fi, and 2G/3G/4G cellular and wired connectivity such as USB 2.0, Gigabit Ethernet, serial ports, CAN 2.0b, analog inputs, and isolated digital I/O.
-- Read the manual to power on device and make sure it is connected to internet via Wi-Fi or ether net.
+-   The Modular IoT Gateway 5400 is a ready-to-deploy, industrial-grade, gateway for advanced Internet of Things applications. It is a smart device that enables communications, edge computational power, simplified application deployment, and integration with Internet of Things (IoT) and Machine to Machine (M2M) platforms for immediate service generation. It provides a capable communication architecture and offers connectivity to a wide range of sensors and edge devices making it easy to collect data from the field and deliver it to your business application. Modular IoT Gateway 5400 supports wireless applications including GPS, Wi-Fi, and 2G/3G/4G cellular and wired connectivity such as USB 2.0, Gigabit Ethernet, serial ports, CAN 2.0b, analog inputs, and isolated digital I/O.
+- Read the manual to power on device and make sure it is connected to internet via Wi-Fi or Ethernet.
 - Read the Manual to connect EG5400 gateway through putty.
-- [Link to EG5400]
+
 
 <a name="Build"></a>
 # Step 3: Build and Run the Sample
@@ -179,5 +179,5 @@ You have now learned how to run a sample application that collects sensor data a
 [setup-devbox-linux]: https://github.com/Azure/azure-iot-device-ecosystem/blob/master/get_started/node-devbox-setup.md
 [lnk-setup-iot-hub]: ../../setup_iothub.md
 [lnk-manage-iot-hub]: ../../manage_iot_hub.md
-[Link to EG5400]:https://cdn2.hubspot.net/hubfs/5724847/FY_19_Revamp_Assets_Website/Resource%20Center/Flyers/Communications/iot-edge-gateways-flyer-0619.pdf?hsCtaTracking=cc4d313f-62a0-4900-9783-747d84779e09%7C601b830d-6ba9-4dda-844a-8163aabc2ea1
+
 
