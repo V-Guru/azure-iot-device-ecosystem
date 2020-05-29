@@ -122,11 +122,14 @@ You should have the following items ready before beginning the process:
     
 -   Find the below code:
 
-        var Protocol = require('azure-iot-device-amqp').Amqp;
+		var Protocol = require('azure-iot-device-amqp').Amqp;
+        // Uncomment one of these transports and then change it in fromConnectionString to test other transports
+		// var Protocol = require('azure-iot-device-mqtt').Mqtt;
+		// var Protocol = require('azure-iot-device-http').Http;
+
 	
     The default protocol used is AMQP. Code for other protocols(HTTP/MQTT) are mentioned just below the above line in the script.
-    Uncomment the line as per the protocol you want to use.
-
+    Uncomment the line as per the protocol you want to use. For EG5400 use MQTT or HTTP.
 
 -   Scroll down to the connection information.
     Find the following place holder for IoT connection string:
