@@ -1,90 +1,82 @@
-# Set up and manage Azure IoT Hub
+---
+platform: Low Power Microcontroller based gateway
+device: Gateway Digital, Analog and other comminications 
+language: c,RTOS
+---
 
-Azure IoT Hub is a fully managed service that enables reliable and secure bi-directional communications between millions of IoT devices and an application back end. You can learn more about Azure IoT Hub visiting the [documentation site][iothub-landing].
+Send Any sensor data to Azure iothub from EG-3300 gateway
+===
+---
 
-Before you can communicate with IoT Hub from a device you must **create an IoT hub instance** in your Azure subscription and then **provision your device in your IoT hub**.
+# Table of Contents
 
-Because of developers preferences and constrains, there are several ways you can create an instance of Azure IoT Hub service and manage this instance. Below are links to resources that will walk you through the steps required to setup an IoT hub and manage it.
+-   [Introduction](#Introduction)
+-   [Step 1: Prerequisites](#Prerequisites)
+-   [Step 2: Prepare your Device](#PrepareDevice)
+-   [Step 3: Update Config Files](#ConfigFile)
+-   [Next Steps](#NextSteps)
 
-## Create an Azure IoT hub... 
-* ... [using the Azure portal]
-* ... [using the Azure CLI 2.0]  - Python command line
-* ... [using the Azure CLI 1.0]  - Node.js command line
-* ... [using PowerShell and a resource manager template]
-* ... [using C# and a resource manager template]
-* ... [using C# and the resource provider REST APIs]
+<a name="Introduction"></a>
+# Introduction
 
+**About this document**
 
-## Manage an Azure IoT hub
-Once you have an Azure IoT hub instance deployed, you will need to manage and interact with it to perform the following operations:
-* Work with the device registry (Create, Update, Delete device IDs)
-* Retrieve device credentials
-* Retrieve user credentials
-* Send Cloud to Device messages to devices
-* Work with Device Twins
-* Invoke Device Direct Methods
-* Monitor operations of the service
+This document describes how to connect Cyient-3300-Low power gateway device running RTOS with Azure IoT SDK. This multi-step process includes:
+-   Configuring Azure IoT Hub
+-   Registering your IoT device
+-   Update Config file to device to set Azure credentials
 
-There is some of this interaction that can happen through the [Azure portal], but most of the interaction will happen through tools and leveraging the various service client SDKs.
+<a name="Prerequisites"></a>
+# Step 1: Prerequisites
 
-### Retrieving user credentials to interact with the service (not as a device!)
-The first thing  you will need to do before you can use a tool or start developing an application that will interact with the IoT hub using one of the service client SDKs is to retrieve user credentials.
+You should have the following items ready before beginning the process:
 
-> It is important to understand the difference between user credentials and device credentials:
-> * The device credentials are managed by the [IoT Hub identity registry](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-identity-registry) and are to be used by code on **devices**
-> * The user credentials are set at the IoT Hub settings level and allow to define user access policies for applications that will **manage** the IoT hub.
-> Details on Control access to IoT Hub can be found [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-security).
+-   [Buy EG-3300 from Cyient][Cyient-EG3300]
+-   [Setup your IoT hub][lnk-setup-iot-hub]
+-   [Provision your device and get its credentials][lnk-manage-iot-hub]
+-   Update Credentails in EG3300 gateway. 
 
-You will need to get user credentials with the right permissions to interact with the identity registry, to send C2D messages, and to work with the Device Twins and Methods.
-The user credentials can easily be found on the [Azure portal] in the "Shared Access Policies" section of the [IoT hub settings blade](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal#change-the-settings-of-the-iot-hub).
-Now you have the credentials, you can create 
+<a name="PrepareDevice"></a>
+# Step 2: Prepare your Device
 
-### Create new device in the IoT Hub device identity registry...
-* ... using [Azure CLI and Azure CLI extensions] to provision a device
-* ... using [Azure IOT Explorer] for Windows
-* ... using the service client SDK ...
-  * ... [for C#]
-  * ... [for Node.js]
-  * ... [for java]
-  * ... [for Python]
-* ...  [using Azure CLI v2.0]  (Python command line tool)
-  
-### Monitor IoT Hub operations
-There is a way to monitor an Azure IoT hub operations as all of these are logged into an Event Hub. This can help debug applications developed to interact and manage an IoT hub.
-Everything you need to know about IoT Hub operations monitoring is [here][azure iot operations monitoring].
-
-### Work and interact with Devices using the tools and SDKs
-Once you have a device ID, you can provision your device with it and start interacting with it from the Cloud through IoT Hub.
-
-When developing, you can leverage some tools that will make your life easier. The below will allow you to do pretty much everything you need to do when developing and testing IoT devices connecting to Azure IoT:
-* [Azure CLI and Azure CLI extensions] to provision a device
-* [Azure IOT Explorer] for Windows
-
-To build applications to manage the IoT hub and interact with devices from the Cloud, you can leverage one of our service client SDKs:
-* [Azure IoT service client SDK for C#]
-* [Azure IoT service client SDK for Node.js]
-* [Azure IoT service client SDK for Java]
-* [Azure IoT service client SDK for Python]
+-   Power up the EG-3300 device 
+-   Register into Cyient gateway portal
+-   [Login to cyient portal][lnk-cyient-portal]
+-   Register device and sensors in the portal
 
 
-[iothub-landing]: https://docs.microsoft.com/azure/iot-hub
-[Azure portal]: https://portal.azure.com
-[using the Azure portal]: https://docs.microsoft.com/azure/iot-hub/iot-hub-create-through-portal
-[using the Azure CLI 2.0]: https://docs.microsoft.com/azure/iot-hub/iot-hub-create-using-cli
-[using the Azure CLI 1.0]: https://docs.microsoft.com/azure/iot-hub/iot-hub-create-using-cli-nodejs
-[using C# and a resource manager template]: https://docs.microsoft.com/azure/iot-hub/iot-hub-rm-template
-[using PowerShell and a resource manager template]: https://docs.microsoft.com/azure/iot-hub/iot-hub-rm-template-powershell
-[using C# and the resource provider REST APIs]: https://docs.microsoft.com/azure/iot-hub/iot-hub-rm-rest
-[azure-portal]: https://portal.azure.com
-[azure iot operations monitoring]: https://docs.microsoft.com/azure/iot-hub/iot-hub-operations-monitoring
-[Azure CLI and Azure CLI extensions]: https://github.com/Azure/azure-iot-device-ecosystem/blob/master/manage_iot_hub.md#use-azure-cli-and-azure-cli-extensions-to-provision-a-device
-[Azure IOT Explorer]: https://github.com/Azure/azure-iot-device-ecosystem/blob/master/manage_iot_hub.md#azure-iot-explorer-for-windows
-[for C#]: https://docs.microsoft.com/azure/iot-hub/iot-hub-csharp-csharp-getstarted#create-a-device-identity
-[for Node.js]: https://docs.microsoft.com/azure/iot-hub/iot-hub-node-node-getstarted#create-a-device-identity
-[for java]: https://docs.microsoft.com/azure/iot-hub/iot-hub-java-java-getstarted#create-a-device-identity
-[for Python]: https://github.com/Azure/azure-iot-sdk-python/tree/master/azure-iot-hub/samples
-[using Azure CLI v2.0]: https://docs.microsoft.com/cli/azure/iot/device#create
-[Azure IoT service client SDK for C#]: https://github.com/Azure/azure-iot-sdk-csharp/tree/master/service
-[Azure IoT service client SDK for Node.js]: https://github.com/azure/azure-iot-sdk-node/tree/master/service
-[Azure IoT service client SDK for Java]: https://github.com/azure/azure-iot-sdk-java/tree/master/service
-[Azure IoT service client SDK for Python]: https://github.com/azure/azure-iot-sdk-python/tree/master/service
+<a name="ConfigFile"></a>
+# Step 3: Load the Azure IoT Connection string  on device
+
+-   Create Input and output connectors and Azure iot hub credentails in Cyient iot hub portal.
+-   Deploy your device
+-   Connect sensors needed for receiving data
+
+<a name="NextSteps"></a>
+# Next Steps
+
+You have now learned how to run a sample application that collects sensor data and sends it to your IoT hub. To explore how to store, analyze and visualize the data from this application in Azure using a variety of different services, please click on the following lessons:
+
+-   [Manage cloud device messaging with iothub-explorer]
+-   [Save IoT Hub messages to Azure data storage]
+-   [Use Power BI to visualize real-time sensor data from Azure IoT Hub]
+-   [Use Azure Web Apps to visualize real-time sensor data from Azure IoT Hub]
+-   [Weather forecast using the sensor data from your IoT hub in Azure Machine Learning]
+-   [Remote monitoring and notifications with Logic Apps]   
+
+[Manage cloud device messaging with iothub-explorer]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-explorer-cloud-device-messaging
+[Save IoT Hub messages to Azure data storage]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-store-data-in-azure-table-storage
+[Use Power BI to visualize real-time sensor data from Azure IoT Hub]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi
+[Use Azure Web Apps to visualize real-time sensor data from Azure IoT Hub]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-web-apps
+[Weather forecast using the sensor data from your IoT hub in Azure Machine Learning]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-weather-forecast-machine-learning
+[Remote monitoring and notifications with Logic Apps]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps
+[Manage cloud device messaging with iothub-explorer]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-explorer-cloud-device-messaging
+[Save IoT Hub messages to Azure data storage]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-store-data-in-azure-table-storage
+[Use Power BI to visualize real-time sensor data from Azure IoT Hub]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi
+[Use Azure Web Apps to visualize real-time sensor data from Azure IoT Hub]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-web-apps
+[Weather forecast using the sensor data from your IoT hub in Azure Machine Learning]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-weather-forecast-machine-learning
+[Remote monitoring and notifications with Logic Apps]: https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-monitoring-notifications-with-azure-logic-apps
+[Cyient-EG3300]: https://cdn2.hubspot.net/hubfs/5724847/FY_19_Revamp_Assets_Website/Resource%20Center/Flyers/Communications/iot-edge-gateways-flyer-0619.pdf
+[lnk-setup-iot-hub]: ../../setup_iothub.md
+[lnk-manage-iot-hub]: ../../manage_iot_hub.md
+[lnk-cyient-portal]: https://iot-hubportal.in/#/login
