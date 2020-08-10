@@ -40,12 +40,18 @@ You should have the following items ready before beginning the process:
 - The Modular IoT Gateway EG3300 is a ready-to-deploy, industrial-grade, gateway for advanced Internet of Things applications. Modular IoT Gateway EG3300 supports wireless applications including GPS, Wi-Fi, and 2G/3G/4G cellular and wired connectivity such as USB 2.0, Gigabit Ethernet, serial ports, CAN 2.0b, analog inputs, and isolated digital I/O.
 - Read the manual to power on device and make sure it is connected to internet via Wi-Fi or Ethernet.
 - Configure the EG3300 with information by accessing the Webserver portal (ex: like any typical wifi router configuration) that would be provided with purchase of EG3300
+- Gateway comes with pre installed software Azure sdk. Gateway supports two azure communication methoda i.e D2C messaging and Direct method.
+
  
 <a name="ConfigFile"></a>
 # Step 3: Load the Azure IoT Connection string  on device
 
--   Create Input and output connectors and Azure IoT Hub credentials on the Webserver
--   Deploy your device
+-   Gateway provides Web interface for updating Azure Iot hub connection string
+-   Read the manual that comes with gateway for opening Webserver
+-   Create Input and output connectors and Azure IoT Hub connection string on the Webserver
+-   Input connectors are data pipe lines for reading sensor data
+-   Output connectors are the pipelines for updating data to cloud
+-   Once changes are coleted submit the form and device will restart and start sending data to Azure iot hub
 -   Connect sensors needed for collecting the data and pushing to Azure IoT Hub
 
 <a name="NextSteps"></a>
